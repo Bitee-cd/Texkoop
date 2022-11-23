@@ -1,32 +1,26 @@
-import React from 'react'
-import useTranslation from 'next-translate/useTranslation'
-import Footer from '../components/Footer'
-
+import React from 'react';
+import useTranslation from 'next-translate/useTranslation';
+import Footer from '../components/Footer';
+import Layout from '../components/Layout';
 
 const About = () => {
-    const { t, lang } = useTranslation('about')
-    
+  const { t, lang } = useTranslation('about');
+
   return (
-    <div>
-        <p>{t('about')}</p>
+    <Layout title="About">
+      <p>{t('about')}</p>
+    </Layout>
+  );
+};
 
-    </div>
-  )
+export default About;
+
+export async function getStaticProps({ locale }) {
+  let about =
+    locale === 'en-US' ? 'English my g' : locale === 'fr' ? 'french nigga' : '';
+  return {
+    props: {
+      about,
+    },
+  };
 }
-
-export default About
-
-export async function getStaticProps({locale}){
-    let about = 
-    locale === 'en-US' 
-    ? 'English my g'
-    : locale ==='fr'
-    ? 'french nigga'
-    :""
-    return {
-      props :{
-        about
-      }
-    }
-  }
-  
